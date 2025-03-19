@@ -57,19 +57,19 @@ class MainActivity : AppCompatActivity() {
 // -------------Empieza la programación
 
 
-            removeWeightButton.setOnClickListener {
-                weight--
-                weightTextView.text="${weight.toInt()} kg"
+        removeWeightButton.setOnClickListener {
+            weight--
+            weightTextView.text="${weight.toInt()} kg"
             }
-            addWeightButton.setOnClickListener {
+        addWeightButton.setOnClickListener {
                 weight++
                 weightTextView.text="${weight.toInt()} kg"
             }
-            heightSlider.addOnChangeListener { slider, value, fromUser ->
+        heightSlider.addOnChangeListener { slider, value, fromUser ->
                 height=value
                 heightTextView.text="${height.toInt()} cm"
             }
-            calculateButton.setOnClickListener {
+        calculateButton.setOnClickListener {
                 val result=weight/(height/100).pow(2)
                 resultTextView.text=String.format("%.2f", result)
             }
