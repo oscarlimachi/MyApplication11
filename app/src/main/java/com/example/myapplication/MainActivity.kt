@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var calculateButton: Button
     //resultado
     lateinit var resultTextView: TextView
+    lateinit var descriptionTextView: TextView
     //Datos predeterminados
     var weight: Float = 74.0f
     var height: Float = 170.0f
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         calculateButton=findViewById(R.id.calculateButton)
         //resultado
         resultTextView=findViewById(R.id.resultTextView)
+        descriptionTextView=findViewById(R.id.descriptionTextView)
 
 // -------------Empieza la programación
 
@@ -72,8 +74,36 @@ class MainActivity : AppCompatActivity() {
         calculateButton.setOnClickListener {
                 val result=weight/(height/100).pow(2)
                 resultTextView.text=String.format("%.2f", result)
-            }
 
+            var colorId=0
+            var descriptionId=0
+
+            when(result){
+                in 0f..18.4f ->{
+                    colorId=R.color.bmi_underweight
+                    descriptionId=R.string.bmi_underweight
+                }
+                in 18.5f..24.9f->{
+                    colorId=R.color.bmi_normal_weight
+                    descriptionId=R.string.bmi_normal_weight
+                }
+                in 25f..29.9f->{
+                    colorId=R.color.bmi_overweight
+                    descriptionId=R.string.bmi_overweight
+                }
+                in 30f..35f ->{
+                    colorId=R.color.bmi_obesity
+                    descriptionId=R.string.bmi_obesity
+                }
+                else -> {
+                    colorId=R.color.bmi_extreme_obesity
+                    descriptionId=R.string.bmi_extreme_obesity
+                }
+            }
+        descriptionTextView.text=getString(descriptionId)
+        descriptionTextView.setTextColor(getColor(colorId))
+        resultTextView.setTextColor(getColor(colorId))
+        }
 
     }
 }
