@@ -139,4 +139,14 @@
         android:layout_height="wrap_content"
         android:text="@string/button_calculate"
         android:layout_gravity="center_horizontal"/>
+    <!--Gif-->
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/resultGifImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        tools:src="@drawable/gif_normal_weight">
+    </pl.droidsonroids.gif.GifImageView>
+
 </LinearLayout>

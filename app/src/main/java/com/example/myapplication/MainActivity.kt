@@ -2,16 +2,18 @@ package com.example.myapplication
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+
 import android.widget.Button
 
-import android.widget.EditText
+
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 import com.google.android.material.slider.Slider
+import pl.droidsonroids.gif.GifImageView
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     //resultado
     lateinit var resultTextView: TextView
     lateinit var descriptionTextView: TextView
+    //gif
+    lateinit var resulGifImageView: GifImageView
     //Datos predeterminados
     var weight: Float = 74.0f
     var height: Float = 170.0f
@@ -55,6 +59,8 @@ class MainActivity : AppCompatActivity() {
         //resultado
         resultTextView=findViewById(R.id.resultTextView)
         descriptionTextView=findViewById(R.id.descriptionTextView)
+        //gif
+        resulGifImageView=findViewById(R.id.resultGifImageView)
 
 // -------------Empieza la programación
 
@@ -77,32 +83,41 @@ class MainActivity : AppCompatActivity() {
 
             var colorId=0
             var descriptionId=0
+            var gifId=0
 
             when(result){
-                in 0f..18.4f ->{
+                in 0f..<18.5f ->{
                     colorId=R.color.bmi_underweight
                     descriptionId=R.string.bmi_underweight
+                    gifId=R.drawable.gif_underweight
                 }
-                in 18.5f..24.9f->{
+                in 18.5f..<25.0f->{
                     colorId=R.color.bmi_normal_weight
                     descriptionId=R.string.bmi_normal_weight
+                    gifId=R.drawable.gif_normal_weight
                 }
-                in 25f..29.9f->{
+                in 25.0f..<30.0f->{
                     colorId=R.color.bmi_overweight
                     descriptionId=R.string.bmi_overweight
+                    gifId=R.drawable.gif_overweight
                 }
-                in 30f..35f ->{
+                in 30.0f..<35.0f ->{
                     colorId=R.color.bmi_obesity
                     descriptionId=R.string.bmi_obesity
+                    gifId=R.drawable.gif_obesity
+
                 }
                 else -> {
                     colorId=R.color.bmi_extreme_obesity
                     descriptionId=R.string.bmi_extreme_obesity
+                    gifId=R.drawable.gif_extreme_obesity
                 }
             }
-        descriptionTextView.text=getString(descriptionId)
-        descriptionTextView.setTextColor(getColor(colorId))
-        resultTextView.setTextColor(getColor(colorId))
+            descriptionTextView.text=getString(descriptionId)
+            descriptionTextView.setTextColor(getColor(colorId))
+            resultTextView.setTextColor(getColor(colorId))
+            resulGifImageView.setImageResource(gifId)
+
         }
 
     }
